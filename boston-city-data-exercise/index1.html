@@ -1,0 +1,40 @@
+<div id="container">
+  <!-- populated by JS-->
+</div>
+<script src="./boston.js"></script>
+<script>
+  function renderBoston(boston, container) {
+    var person = boston.data;
+    
+    person.sort(
+      (x, y) => y[11] - x[11]
+    );
+
+    var html = '<h1>Top Earners</h1>';
+    html += '<ul>';
+    for (let i = 0; i < 5; i++) {
+      html += '<li">' +
+        '<h2>' + person[i][8]+ '</h2>'
+    }
+    html += '</ul>';
+
+    richPerson = person.filter(el => el[11] > 100000 );
+    html += `<h1>Employees above 100K = ${richPerson.length}</h1>`;
+
+    police = person.filter(el => el[10] === "Boston Police Department");
+    html += `<h1>Police = ${police.length}</h1>`;
+
+    html += '<ul>';
+    for (let i = 0; i < 5; i++) {
+      html += '<li">' +
+        '<h2>' + police[i][8]+ '</h2>' +
+        '<h3>' + police[i][11]+ '</h3>'
+    }
+    html += '</ul>';
+    
+
+
+    container.innerHTML = html;
+  }
+  renderBoston(boston, document.getElementById('container'));
+</script>
